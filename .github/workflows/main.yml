@@ -16,7 +16,8 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repo 
+    
       - uses: actions/checkout@v2
+      - name: Run a one-line script 
 
         run: echo Hello, World Action!

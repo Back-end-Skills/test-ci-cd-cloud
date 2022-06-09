@@ -21,7 +21,7 @@ jobs:
           VPS_DEPLOY_KEY: ${{ secrets.FTP_PASSWORD }}
           VPS_DEPLOY_USER: ${{ secrets.FTP_USERNAME }}
           VPS_DEPLOY_HOST: ${{ secrets.FTP_HOST }}
-          VPS_DEPLOY_DEST: /var/www/socialhouse.top/htdocs/
+          VPS_DEPLOY_DEST: /var/www/socialhouse.top/
         with:
           hugo-arguments: '--minify'
           rsync-arguments: '--archive --compress --xattrs --delete'

@@ -9,5 +9,8 @@
  echo "correção code mudança de código yml02";
  echo "job completo em github, mas sem arquivos no destino!";
 
+
  echo "job completo em github, mas sem arquivos no destino! 0802";
  echo "job completo em github, mas sem arquivos no destino! 0803";
+
+ echo "novo yaml job completo em github, mas sem arquivos no destino! 0803";

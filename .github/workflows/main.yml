@@ -1,21 +1,20 @@
 name: Deploy website on push main
 
-# 1
-# Controls when the workflow will run
+
 on:
-  # Triggers the workflow on push events but only for the master branch
+
   push:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ main ]
 
 
 
-#3
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:    
       - uses: actions/checkout@v2
+      
       - name: Run a one-line script 
         run: echo Hello, World Action!

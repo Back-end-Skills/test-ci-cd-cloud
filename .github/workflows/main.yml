@@ -19,5 +19,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /var/www/socialhouse.top/htdocs/
         
-        protocolo: FTPS
+        # protocolo: FTPS
         port: 22

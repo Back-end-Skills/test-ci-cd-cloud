@@ -1,23 +1,27 @@
-name: 🚀 Deploy website on push master
-on: 
+name: 'Generate and deploy'
+
+on:
   push:
-    branches:
-      - main
+    branches: [ master ]
+  #pull_request:
+    #branches: [ master ]
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy-website:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-    
-      with:
-          privkey: ${{ secrets.FTP_PASSWORD }}
-          host: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          hostname: "socialhouse.top"
-          options: "--exclude=.git --exclude=node_modules --exclude=.git*"
-          serverpath: "htdocs" 
+      - name: Do a git checkout including submodules
+        uses: actions/checkout@master
+        with:
+          submodules: true
 
-          protocolo: SFTP
-          port: 22
+      - name: Generate and deploy website
+        uses: ronvanderheijden/hugo-rsync-deployment@master
+        env:
+          VPS_DEPLOY_KEY: ${{ secrets.FTP_PASSWORD }}
+          VPS_DEPLOY_USER: ${{ secrets.FTP_USERNAME }}
+          VPS_DEPLOY_HOST: ${{ secrets.FTP_HOST }}
+          VPS_DEPLOY_DEST: /var/www/socialhouse.top/htdocs/
+        with:
+          hugo-arguments: '--minify'
+          rsync-arguments: '--archive --compress --xattrs --delete'

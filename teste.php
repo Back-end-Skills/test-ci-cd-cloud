@@ -16,3 +16,5 @@
  echo "novo yaml job completo em github, mas sem arquivos no destino! 0803";
  echo "novo yaml job completo em github, mas sem arquivos no destino novas definições! 0803";
  echo "novo yaml job completo em github, mas sem arquivos no destino novas definições! 0804";
+
+ echo "novo yaml job completo em github, mas sem arquivos no destino novas definições! 0804";

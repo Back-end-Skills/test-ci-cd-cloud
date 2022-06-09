@@ -35,8 +35,8 @@ jobs:
         with:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.DIGITALOCEAN_USERNAME }}
-          #passphrase: ${{ secrets.DIGITALOCEAN_SSHKEY_PASSPHRASE }}
-          #key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
+          passphrase: ${{ secrets.DIGITALOCEAN_SSHKEY_PASSPHRASE }}
+          key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           # passphrase: ${{ secrets.PASSPHRASE }}
           # envs: IMAGE_NAME,REGISTRY,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA

@@ -1,20 +1,15 @@
 name: Deploy website on push main
 
-
 on:
 
   push:
     branches: [ main ]
-
-
-
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:    
       - uses: actions/checkout@v2
-      
-      - name: Run a one-line script 
+
+      - name: Execute linha de script 
         run: echo Hello, World Action!

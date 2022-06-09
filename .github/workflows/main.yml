@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
     
     - name: 📂 Sync files
-    - uses: ./.github/actions/sshrsync-action
+    - uses: ./.github/workflows/sshrsync-action
       with:
           privkey: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_HOST }}

@@ -11,8 +11,6 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
-    - name: 📂 Sync files
-    - uses: ./.github/workflows/sshrsync-action
       with:
           privkey: ${{ secrets.FTP_PASSWORD }}
           host: ${{ secrets.FTP_HOST }}

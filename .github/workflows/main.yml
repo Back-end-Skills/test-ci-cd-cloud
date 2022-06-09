@@ -12,12 +12,13 @@ jobs:
       uses: actions/checkout@v2
     
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+    - uses: ./.github/actions/sshrsync-action
       with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /var/www/socialhouse.top/htdocs/
-        
-        protocolo: SFTP
-        port: 22
+          privkey: ${{ secrets.FTP_PASSWORD }}
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          hostname: "example.com"
+          options: "--exclude=.git --exclude=node_modules --exclude=.git*"
+          serverpath: "var/www/socialhouse.top/htdocs"        
+          protocolo: SFTP
+          port: 22

@@ -1,27 +1,43 @@
-name: 'Generate and deploy'
+name: Deploy website on push main
 
+# 1
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push events but only for the master branch
   push:
     branches: [ master ]
-  #pull_request:
-    #branches: [ master ]
 
+  # Allows you to run this workflow manually from the Actions tab
+
+
+
+#3
 jobs:
-  deploy-website:
+  build_and_push:
     runs-on: ubuntu-latest
     steps:
-      - name: Do a git checkout including submodules
-        uses: actions/checkout@master
-        with:
-          submodules: true
+      - name: Checkout the repo 
+        uses: actions/checkout@v2
 
-      - name: Generate and deploy website
-        uses: ronvanderheijden/hugo-rsync-deployment@master
-        env:
-          VPS_DEPLOY_KEY: ${{ secrets.FTP_PASSWORD }}
-          VPS_DEPLOY_USER: ${{ secrets.FTP_USERNAME }}
-          VPS_DEPLOY_HOST: ${{ secrets.FTP_HOST }}
-          VPS_DEPLOY_DEST: /var/www/socialhouse.top/
+      # - name: Install doctl
+      #   uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+  
+        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    
+    steps:
+      - name: Deploy to Digital Ocean droplet via SSH action
+        uses: appleboy/ssh-action@v0.1.3
         with:
-          hugo-arguments: '--minify'
-          rsync-arguments: '--archive --compress --xattrs --delete'
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.DIGITALOCEAN_USERNAME }}
+          #passphrase: ${{ secrets.DIGITALOCEAN_SSHKEY_PASSPHRASE }}
+          #key: ${{ secrets.DIGITALOCEAN_SSHKEY }}
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          # passphrase: ${{ secrets.PASSPHRASE }}
+          # envs: IMAGE_NAME,REGISTRY,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
+      

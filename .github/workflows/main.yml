@@ -1,15 +1,24 @@
-name: Deploy website on push main
-
-on:
-
+#Funciona mas não envia os arquivo pro server
+name: 🚀 Deploy website on push master
+on: 
   push:
-    branches: [ main ]
-
+    branches:
+      - main
 jobs:
-  build:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-    steps:    
-      - uses: actions/checkout@v2
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+      with:
+          privkey: ${{ secrets.FTP_PASSWORD }}
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          hostname: "socialhouse.top"
+          options: "--exclude=.git --exclude=node_modules --exclude=.git*"
+          serverpath: "/var/www/socialhouse.top/htdocs/" 
 
-      - name: Execute linha de script 
-        run: echo Hello, World Action!
+          protocolo: SFTP
+          port: 22

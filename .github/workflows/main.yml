@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           hostname: "socialhouse.top"
           options: "--exclude=.git --exclude=node_modules --exclude=.git*"
-          serverpath: "/var/www/socialhouse.top/htdocs/" 
+          serverpath: "var/www/socialhouse.top/htdocs/" 
 
           protocolo: SFTP
           port: 22
